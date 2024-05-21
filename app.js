@@ -6,6 +6,8 @@ import registerHelmet from './api/plugins/helmet.js'
 import registerSwagger from './api/plugins/swagger.js'
 import checkApiKey from './api/pre-handlers/check-api-key.js'
 import registerRoutes from './api/routes/index.js'
+import './api/services/config.js'
+
 import { connectRedis, redisClient } from './api/services/redis.js'
 
 const app = Fastify()

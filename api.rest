@@ -1,0 +1,116 @@
+### Create a new document
+POST {{$dotenv API_DOMAIN}}:{{$dotenv API_PORT}}/create
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "collection": "users",
+  "document": {
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+  }
+}
+
+### Read documents
+POST {{$dotenv API_DOMAIN}}:{{$dotenv API_PORT}}/read
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "collection": "users",
+  "query": {},
+  "projection": {},
+  "limit": 10,
+  "skip": 0
+}
+
+### Perform aggregation
+POST {{$dotenv API_DOMAIN}}:{{$dotenv API_PORT}}/aggregate
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "collection": "users",
+  "pipeline": [
+    {
+      "$match": {
+        "age": {
+          "$gt": 20
+        }
+      }
+    },
+    {
+      "$group": {
+        "_id": "$age",
+        "count": {
+          "$sum": 1
+        }
+      }
+    }
+  ]
+}
+
+### Count documents
+POST {{$dotenv API_DOMAIN}}:{{$dotenv API_PORT}}/count
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "collection": "users",
+  "query": {}
+}
+
+
+### Delete a document
+DELETE {{$dotenv API_DOMAIN}}:{{$dotenv API_PORT}}/delete
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "collection": "users",
+  "query": {
+    "name": "John Doe"
+  }
+}
+
+### Get distinct values
+POST {{$dotenv API_DOMAIN}}:{{$dotenv API_PORT}}/distinct
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "collection": "users",
+  "field": "age"
+}
+
+### Update documents
+PUT {{$dotenv API_DOMAIN}}:{{$dotenv API_PORT}}/update
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "collection": "users",
+  "query": {
+    "name": "John Doe"
+  },
+  "update": {
+    "$set": {
+      "email": "john.updated@example.com"
+    }
+  },
+  "options": {}
+}
+
+### Upsert a document
+POST {{$dotenv API_DOMAIN}}:{{$dotenv API_PORT}}/upsert
+Content-Type: application/json
+x-api-key: {{$dotenv API_KEY}}
+
+{
+  "collection": "users",
+  "document": {
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com"
+  },
+  "uniqueKey": "email"
+}

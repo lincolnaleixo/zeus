@@ -31,7 +31,7 @@ async function startServer () {
       console.error(error)
       throw error
     }
-    console.log(`Database-API is running on port ${PORT}`)
+    console.log(`Zeus is running on port ${PORT}`)
   })
 }
 

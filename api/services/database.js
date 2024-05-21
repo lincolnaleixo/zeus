@@ -12,12 +12,12 @@ export default async function connect () {
 
   try {
     await client.connect()
-    console.log('Connected successfully to server')
+    console.log('Connected to database')
 
     const database = client.db(databaseName)
     return { client, db: database }
   } catch (error) {
-    console.error('Connection to MongoDB failed:', error.message)
+    console.error('Connection to database failed:', error.message)
     throw error
   }
 }

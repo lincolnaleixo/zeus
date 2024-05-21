@@ -17,30 +17,11 @@ services:
       - ${API_PORT}:${API_PORT}
     networks:
       - aiana
-    develop:
-      watch:
-        - action: sync
-          path: .
-          target: /usr/src/app
-          ignore:
-            - node_modules/
-            - database/
-            - .git/
-            - .vscode/
-            - .idea/
-            - .DS_Store
-            - .dockerignore
-            - Dockerfile
-            - docker-compose.yml
-            - docker-compose.dev.yml
-            - start.prod.sh
-            - start.dev.sh
-            - "*.swp"  # Ignore Vim swap files
-            - "*.tmp"  # Ignore temporary files
-            - "*.log"  # Ignore log files
-            - "*.pid"  # Ignore pid files
-        - action: rebuild
-          path: package.json
+    environment:
+      - NODE_ENV=development
+    command: >
+      sh -c "npx nodemon -r dotenv/config server.js dotenv_config_path=.env"
+
 
   redis:
     container_name: ${REDIS_HOSTNAME}
