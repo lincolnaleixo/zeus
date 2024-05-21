@@ -11,8 +11,7 @@
   "scripts": {
     "dev": "nodemon -r dotenv/config server.js dotenv_config_path=.env.dev",
     "docker:dev": "docker compose build && docker compose -f docker-compose.dev.yml up",
-    "swagger": "node -r dotenv/config generate-swagger.js dotenv_config_path=.env.dev",
-    "start": "docker compose build && docker compose up -d --remove-orphans"
+    "swagger": "node -r dotenv/config generate-swagger.js dotenv_config_path=.env.dev"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",

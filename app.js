@@ -1,4 +1,3 @@
-import dotenv from 'dotenv'
 import Fastify from 'fastify'
 import registerErrorHandler from './api/middlewares/error-handler.js'
 import { registerRateLimit } from './api/middlewares/rate-limit.js'
@@ -9,11 +8,9 @@ import checkApiKey from './api/pre-handlers/check-api-key.js'
 import registerRoutes from './api/routes/index.js'
 import { connectRedis, redisClient } from './api/services/redis.js'
 
-dotenv.config()
-
 const app = Fastify()
 
-await connectRedis()
+await connectRedis(process.env.REDIS_HOSTNAME, process.env.REDIS_PORT)
 app.decorate('redis', redisClient)
 
 await registerCors(app)

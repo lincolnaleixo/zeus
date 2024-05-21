@@ -1,3 +1,5 @@
+import './api/services/config.js'
+
 import connect from './api/services/database.js'
 import app from './app.js'
 

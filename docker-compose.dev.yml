@@ -1,4 +1,45 @@
 services:
+  api:
+    container_name: ${API_HOSTNAME}
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./.env:/usr/src/app/.env
+      - ./api:/usr/src/app/api
+      - ./app.js:/usr/src/app/app.js
+      - ./server.js:/usr/src/app/server.js
+      - ./package.json:/usr/src/app/package.json
+    ports:
+      - ${API_PORT}:${API_PORT}
+    networks:
+      - aiana
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /usr/src/app
+          ignore:
+            - node_modules/
+            - database/
+            - .git/
+            - .vscode/
+            - .idea/
+            - .DS_Store
+            - .dockerignore
+            - Dockerfile
+            - docker-compose.yml
+            - docker-compose.dev.yml
+            - "*.swp"  # Ignore Vim swap files
+            - "*.tmp"  # Ignore temporary files
+            - "*.log"  # Ignore log files
+            - "*.pid"  # Ignore pid files
+        - action: rebuild
+          path: package.json
+
   redis:
     container_name: ${REDIS_HOSTNAME}
     image: "redis:alpine"
