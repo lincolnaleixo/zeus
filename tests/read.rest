@@ -1,0 +1,18 @@
+POST http://localhost:3000/read
+Content-Type: application/json
+x-api-key: aYsTVw%p5HgUz4n8Wijm
+
+{
+  "collection": "users",
+  "query": {
+    "age": {
+      "$gt": 20
+    }
+  },
+  "projection": {
+    "name": 1,
+    "email": 1
+  },
+  "limit": 10,
+  "skip": 0
+}

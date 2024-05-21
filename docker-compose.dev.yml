@@ -1,0 +1,28 @@
+services:
+  redis:
+    container_name: ${REDIS_HOSTNAME}
+    image: "redis:alpine"
+    depends_on:
+      - mongodb
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    networks:
+      - aiana
+
+  mongodb:
+    container_name: ${MONGODB_HOSTNAME}
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    restart: always
+    volumes:
+      - ./database:/data/db
+    ports:
+      - ${MONGODB_PORT}:${MONGODB_PORT}
+    networks:
+      - aiana
+
+networks:
+  aiana:
+    driver: bridge

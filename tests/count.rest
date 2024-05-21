@@ -1,0 +1,13 @@
+### Count documents
+POST http://localhost:3000/count
+Content-Type: application/json
+x-api-key: aYsTVw%p5HgUz4n8Wijm
+
+{
+  "collection": "users",
+  "query": {
+    "age": {
+      "$gt": 20
+    }
+  }
+}

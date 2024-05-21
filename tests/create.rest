@@ -1,0 +1,12 @@
+POST http://localhost:3000/create
+Content-Type: application/json
+x-api-key: aYsTVw%p5HgUz4n8Wijm
+
+{
+  "collection": "users",
+  "document": {
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "age": 25
+  }
+}

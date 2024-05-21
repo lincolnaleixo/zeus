@@ -1,0 +1,19 @@
+### Update documents
+PUT http://localhost:3000/update
+Content-Type: application/json
+x-api-key: aYsTVw%p5HgUz4n8Wijm
+
+{
+  "collection": "users",
+  "query": {
+    "email": "jane.doe@example.com"
+  },
+  "update": {
+    "$set": {
+      "age": 22
+    }
+  },
+  "options": {
+    "upsert": false
+  }
+}

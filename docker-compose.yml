@@ -1,0 +1,56 @@
+services:
+  api:
+    container_name: ${API_HOSTNAME}
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mongodb
+    volumes:
+      - ./.env:/usr/src/app/.env
+    ports:
+      - ${API_PORT}:${API_PORT}
+    networks:
+      - aiana
+
+  redis:
+    container_name: ${REDIS_HOSTNAME}
+    image: "redis:alpine"
+    depends_on:
+      - mongodb
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    networks:
+      - aiana
+
+  mongodb:
+    container_name: ${MONGODB_HOSTNAME}
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    restart: always
+    volumes:
+      - ./database:/data/db
+    ports:
+      - ${MONGODB_PORT}:${MONGODB_PORT}
+    networks:
+      - aiana
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./conf:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt
+    ports:
+      - ${NGINX_HTTP_PORT}:${NGINX_HTTP_PORT}
+      - ${NGINX_HTTPS_PORT}:${NGINX_HTTPS_PORT}
+    depends_on:
+      - api
+    networks:
+      - aiana
+
+networks:
+  aiana:
+    driver: bridge

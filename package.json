@@ -1,0 +1,42 @@
+{
+  "name": "zeus",
+  "description": "An API for connecting to the database",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "author": "Lincoln Aleixo",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "nodemon -r dotenv/config server.js dotenv_config_path=.env.dev",
+    "docker:dev": "docker compose build && docker compose -f docker-compose.dev.yml up",
+    "swagger": "node -r dotenv/config generate-swagger.js dotenv_config_path=.env.dev",
+    "start": "docker compose build && docker compose up -d --remove-orphans"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/helmet": "^11.1.1",
+    "@fastify/rate-limit": "^9.1.0",
+    "@fastify/swagger": "^8.14.0",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.27.0",
+    "fastify-helmet": "^7.1.0",
+    "fluent-schema": "^1.1.0",
+    "mongodb": "^6.6.2",
+    "redis": "^4.6.14"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-deprecate": "^0.8.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-security": "^1.7.1",
+    "eslint-plugin-sonarjs": "^0.21.0",
+    "eslint-plugin-unicorn": "^48.0.1",
+    "nodemon": "^2.0.4"
+  }
+}

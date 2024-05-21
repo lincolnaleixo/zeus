@@ -1,0 +1,14 @@
+### Upsert a document
+POST http://localhost:3000/upsert
+Content-Type: application/json
+x-api-key: aYsTVw%p5HgUz4n8Wijm
+
+{
+  "collection": "users",
+  "uniqueKey": "email",
+  "document": {
+    "name": "Jane Doeeee",
+    "email": "jane.doe@examplesss.com",
+    "age": 27
+  }
+}
