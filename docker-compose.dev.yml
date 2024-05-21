@@ -33,6 +33,8 @@ services:
             - Dockerfile
             - docker-compose.yml
             - docker-compose.dev.yml
+            - start.prod.sh
+            - start.dev.sh
             - "*.swp"  # Ignore Vim swap files
             - "*.tmp"  # Ignore temporary files
             - "*.log"  # Ignore log files
