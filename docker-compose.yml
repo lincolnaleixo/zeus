@@ -7,7 +7,6 @@ services:
     depends_on:
       - mongodb
       - redis
-      - nginx
     volumes:
       - ./.env:/usr/src/app/.env
     ports:
