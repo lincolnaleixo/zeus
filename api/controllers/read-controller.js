@@ -17,19 +17,19 @@ export default async function readDocuments (request, reply) {
     // Fetch from database
     const results = await request.server.database.collection(collection)
       .find(query)
-      .project(projection || {}) // Ensure projection is set correctly
+      .project(projection || {})
       .limit(Number(limit))
       .skip(Number(skip))
       .toArray()
 
     // Cache the result
     await request.server.redis.set(cacheKey, JSON.stringify(results), {
-      EX: cacheExpiry // Cache expiration time in seconds
+      EX: cacheExpiry
     })
 
     reply.send(results)
   } catch (error) {
-    request.server.log.error(error) // Log the error for debugging
+    request.server.log.error(error)
     reply.status(500)
       .send({ error: 'Unable to fetch documents' })
   }

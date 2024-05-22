@@ -6,7 +6,7 @@ export default async function upsertDocument (request, reply) {
       .updateOne(key, { $set: document }, { upsert: true })
     reply.send(result)
   } catch (error) {
-    request.server.log.error(error) // Log the error for debugging
+    request.server.log.error(error)
     reply.status(500)
       .send({ error: 'Unable to upsert document' })
   }

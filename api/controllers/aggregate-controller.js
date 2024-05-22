@@ -6,7 +6,7 @@ export default async function aggregateDocuments (request, reply) {
       .toArray()
     reply.send(results)
   } catch (error) {
-    request.server.log.error(error) // Log the error for debugging
+    request.server.log.error(error)
     reply.status(500)
       .send({ error: 'Unable to perform aggregation' })
   }

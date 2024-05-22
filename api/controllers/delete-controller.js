@@ -5,7 +5,7 @@ export default async function deleteDocuments (request, reply) {
       .deleteMany(query)
     reply.send(result)
   } catch (error) {
-    request.server.log.error(error) // Log the error for debugging
+    request.server.log.error(error)
     reply.status(500)
       .send({ error: 'Unable to delete documents' })
   }

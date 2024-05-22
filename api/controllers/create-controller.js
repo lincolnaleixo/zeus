@@ -5,7 +5,7 @@ export default async function createDocument (request, reply) {
       .insertOne(document)
     reply.send(result)
   } catch (error) {
-    request.server.log.error(error) // Log the error for debugging
+    request.server.log.error(error)
     reply.status(500)
       .send({ error: 'Unable to insert document' })
   }

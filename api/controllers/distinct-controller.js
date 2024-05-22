@@ -5,7 +5,7 @@ export default async function distinctDocuments (request, reply) {
       .distinct(field, query)
     reply.send(distinctValues)
   } catch (error) {
-    request.server.log.error(error) // Log the error for debugging
+    request.server.log.error(error)
     reply.status(500)
       .send({ error: 'Unable to fetch distinct values' })
   }

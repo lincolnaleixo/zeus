@@ -5,7 +5,7 @@ export default async function countDocuments (request, reply) {
       .countDocuments(query)
     reply.send({ count })
   } catch (error) {
-    request.server.log.error(error) // Log the error for debugging
+    request.server.log.error(error)
     reply.status(500)
       .send({ error: 'Unable to count documents' })
   }

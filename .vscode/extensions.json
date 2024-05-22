@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "codeium.codeium",
+        "dbaeumer.vscode-eslint",
+        "pkief.material-icon-theme",
+        "humao.rest-client",
+        "equinusocio.vsc-material-theme-icons"
+    ]
+}
